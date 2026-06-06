@@ -1,10 +1,9 @@
 import asyncio
-from datetime import date, datetime, timedelta, timezone
+from datetime import date, timedelta
 
 from app.core.database import AsyncSessionLocal
 from app.core.security import hash_password
 from app.models.membership import Membership
-from app.models.training import Training
 from app.models.user import User
 
 
@@ -56,45 +55,6 @@ async def seed() -> None:
             print(f"Created active membership for member1 (30 days)")
         else:
             print("member1 already has an active membership")
-
-        # Create trainings
-        trainer1 = created_users["trainer1"]
-        trainings_data = [
-            {
-                "title": "Morning Yoga",
-                "duration_minutes": 60,
-                "max_capacity": 10,
-            },
-            {
-                "title": "Evening Pilates",
-                "duration_minutes": 45,
-                "max_capacity": 8,
-            },
-            {
-                "title": "Strength Training",
-                "duration_minutes": 90,
-                "max_capacity": 5,
-            },
-        ]
-
-        for idx, data in enumerate(trainings_data):
-            result = await db.execute(
-                select(Training).where(Training.title == data["title"])
-            )
-            existing_training = result.scalar_one_or_none()
-            if not existing_training:
-                training = Training(
-                    trainer_id=trainer1.id,
-                    title=data["title"],
-                    scheduled_at=datetime.now(timezone.utc) + timedelta(days=idx + 1),
-                    duration_minutes=data["duration_minutes"],
-                    max_capacity=data["max_capacity"],
-                    status="scheduled",
-                )
-                db.add(training)
-                print(f"Created training: {data['title']}")
-            else:
-                print(f"Training already exists: {data['title']}")
 
         await db.commit()
         print("Seed completed.")

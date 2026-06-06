@@ -1,0 +1,15 @@
+# Railway / Nixpacks konfiguracija za frontend (web/)
+# Build: instalira dependencije i radi produkcijski build (dist/).
+# Start: servira dist/ preko vite preview na portu koji Railway dodijeli ($PORT).
+
+[phases.setup]
+nixPkgs = ["nodejs_20"]
+
+[phases.install]
+cmds = ["npm ci"]
+
+[phases.build]
+cmds = ["npm run build"]
+
+[start]
+cmd = "npm run preview"

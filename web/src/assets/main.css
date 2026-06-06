@@ -1,0 +1,254 @@
+/* ============================================
+   IRON GYM — globalni stilovi i design tokeni
+   Industrijska/tamna estetika za teretanu.
+   ============================================ */
+
+:root {
+  /* Boje */
+  --boja-pozadina: #0c0d0f;
+  --boja-povrsina: #16181c;
+  --boja-povrsina-2: #1e2127;
+  --boja-rub: #2b2f37;
+  --boja-rub-jaki: #3a3f49;
+  --boja-tekst: #ece8e1;
+  --boja-tekst-prigusen: #8a909c;
+  --boja-akcent: #e8521e;
+  --boja-akcent-tamni: #c1410f;
+  --boja-uspjeh: #5e9c3f;
+  --boja-upozorenje: #d9a521;
+  --boja-greska: #d6453c;
+  --boja-info: #4a8fc7;
+
+  /* Tipografija */
+  --font-naslov: "Bebas Neue", "Impact", sans-serif;
+  --font-tekst: "Barlow", -apple-system, sans-serif;
+
+  /* Razmaci / radius / sjene */
+  --radius: 4px;
+  --radius-lg: 8px;
+  --sjena: 0 4px 16px rgba(0, 0, 0, 0.4);
+  --sjena-jaka: 0 12px 40px rgba(0, 0, 0, 0.55);
+  --tranzicija: 160ms ease;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  height: 100%;
+}
+
+body {
+  font-family: var(--font-tekst);
+  background-color: var(--boja-pozadina);
+  color: var(--boja-tekst);
+  line-height: 1.55;
+  -webkit-font-smoothing: antialiased;
+  /* Suptilna tekstura pozadine */
+  background-image:
+    radial-gradient(circle at 15% 10%, rgba(232, 82, 30, 0.06), transparent 40%),
+    radial-gradient(circle at 85% 90%, rgba(74, 143, 199, 0.05), transparent 45%);
+  background-attachment: fixed;
+}
+
+h1, h2, h3, h4 {
+  font-family: var(--font-naslov);
+  font-weight: 400;
+  letter-spacing: 0.5px;
+  line-height: 1.05;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font-family: var(--font-tekst);
+  cursor: pointer;
+}
+
+input, select, textarea {
+  font-family: var(--font-tekst);
+}
+
+/* --- Reusable utility klase --- */
+
+.naslov-velik {
+  font-size: clamp(2.2rem, 5vw, 3.4rem);
+  text-transform: uppercase;
+}
+
+.kartica {
+  background: var(--boja-povrsina);
+  border: 1px solid var(--boja-rub);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--sjena);
+}
+
+.tekst-prigusen {
+  color: var(--boja-tekst-prigusen);
+}
+
+/* Gumbi */
+.gumb {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.15rem;
+  border: 1px solid var(--boja-rub-jaki);
+  border-radius: var(--radius);
+  background: var(--boja-povrsina-2);
+  color: var(--boja-tekst);
+  font-size: 0.92rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  transition: var(--tranzicija);
+  white-space: nowrap;
+}
+.gumb:hover:not(:disabled) {
+  border-color: var(--boja-rub-jaki);
+  background: var(--boja-rub);
+}
+.gumb:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.gumb-primarni {
+  background: var(--boja-akcent);
+  border-color: var(--boja-akcent);
+  color: #fff;
+}
+.gumb-primarni:hover:not(:disabled) {
+  background: var(--boja-akcent-tamni);
+  border-color: var(--boja-akcent-tamni);
+}
+
+.gumb-opasnost {
+  background: transparent;
+  border-color: var(--boja-greska);
+  color: var(--boja-greska);
+}
+.gumb-opasnost:hover:not(:disabled) {
+  background: var(--boja-greska);
+  color: #fff;
+}
+
+.gumb-mali {
+  padding: 0.35rem 0.7rem;
+  font-size: 0.78rem;
+}
+
+/* Bedzevi za status */
+.bedz {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.2rem 0.6rem;
+  border-radius: 999px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border: 1px solid transparent;
+}
+.bedz-scheduled, .bedz-active, .bedz-confirmed {
+  background: rgba(94, 156, 63, 0.15);
+  color: var(--boja-uspjeh);
+  border-color: rgba(94, 156, 63, 0.35);
+}
+.bedz-in_progress {
+  background: rgba(217, 165, 33, 0.15);
+  color: var(--boja-upozorenje);
+  border-color: rgba(217, 165, 33, 0.35);
+}
+.bedz-completed {
+  background: rgba(74, 143, 199, 0.15);
+  color: var(--boja-info);
+  border-color: rgba(74, 143, 199, 0.35);
+}
+.bedz-cancelled {
+  background: rgba(214, 69, 60, 0.12);
+  color: var(--boja-greska);
+  border-color: rgba(214, 69, 60, 0.3);
+}
+
+/* Forme */
+.polje {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+.polje label {
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.4px;
+  color: var(--boja-tekst-prigusen);
+}
+.polje input,
+.polje select {
+  padding: 0.65rem 0.8rem;
+  background: var(--boja-pozadina);
+  border: 1px solid var(--boja-rub);
+  border-radius: var(--radius);
+  color: var(--boja-tekst);
+  font-size: 0.95rem;
+  transition: var(--tranzicija);
+}
+.polje input:focus,
+.polje select:focus {
+  outline: none;
+  border-color: var(--boja-akcent);
+  box-shadow: 0 0 0 3px rgba(232, 82, 30, 0.15);
+}
+.polje .greska-polja {
+  font-size: 0.78rem;
+  color: var(--boja-greska);
+}
+
+/* Animacije */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.fade-in {
+  animation: fadeInUp 0.4s ease both;
+}
+
+/* Skrolanje */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+::-webkit-scrollbar-track {
+  background: var(--boja-pozadina);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--boja-rub);
+  border-radius: 5px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--boja-rub-jaki);
+}

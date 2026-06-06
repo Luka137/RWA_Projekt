@@ -10,7 +10,7 @@ class ReservationResponse(BaseModel):
     id: int
     training_id: int
     status: str
-    user: UserResponse | None = None
+    user: UserResponse
 
     @classmethod
     def from_orm_with_user(cls, reservation: Reservation) -> "ReservationResponse":
@@ -18,5 +18,5 @@ class ReservationResponse(BaseModel):
             id=reservation.id,
             training_id=reservation.training_id,
             status=reservation.status,
-            user=UserResponse.model_validate(reservation.user) if reservation.user else None,
+            user=UserResponse.model_validate(reservation.user),
         )

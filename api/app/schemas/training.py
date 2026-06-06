@@ -53,4 +53,4 @@ class TrainingResponse(BaseModel):
     duration_minutes: int
     max_capacity: int
     status: str
-    trainer: TrainerInfo | None = None
+    trainer: TrainerInfo | None
