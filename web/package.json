@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vue-tsc -b && vite build",
-    "preview": "vite preview --host 0.0.0.0 --port $PORT"
+    "preview": "npx serve dist -l $PORT"
   },
   "dependencies": {
     "axios": "^1.7.9",
