@@ -9,10 +9,13 @@ export default defineConfig({
       "@": fileURLToPath(new URL("./src", import.meta.url)),
     },
   },
+  preview: {
+    host: "0.0.0.0",
+    allowedHosts: ["all"],
+  },
   server: {
     port: 5173,
     proxy: {
-      // Sve sto ide na /api preusmjeri na backend (izbjegava CORS u dev-u)
       "/api": {
         target: "http://localhost:8000",
         changeOrigin: true,
